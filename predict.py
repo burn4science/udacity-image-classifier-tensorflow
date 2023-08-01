@@ -1,3 +1,6 @@
+# Note: I took ideas in this code from this repository:
+# https://github.com/mnalmelihi/udacity-mlnd-image-classifier-TensorFlow/tree/main
+
 import argparse
 import json
 import os
