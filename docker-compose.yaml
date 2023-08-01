@@ -1,0 +1,30 @@
+version: "3.9"
+
+name: udacity_imgclf
+
+services:
+  tensorflow:
+    build: .
+    tty: true       #keep container running! = docker run -t
+    init: true
+    restart: unless-stopped
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - .:/app
+    ports:
+      - "8888:8888"
+
+    deploy:
+      resources:
+        reservations:
+          cpus: '20'
+          # memory: 200G
+          devices:
+            - driver: nvidia
+              count: 2
+              capabilities: [gpu]
+        # limits:
+          # cpus: '30'
+          # memory: 200G
