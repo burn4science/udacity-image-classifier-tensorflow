@@ -20,6 +20,7 @@ IMG_SIZE = 224
 def process_image(img_path: Path) -> np.ndarray:
     """Process an image path into a 4D tensor suitable for making predictions with our model"""
     img = image.load_img(img_path, target_size=(IMG_SIZE, IMG_SIZE))
+    img = image.img_to_array(img)  # convert the PIL image to a numpy array
     img = tf.convert_to_tensor(img)
     img /= 255
     img = tf.expand_dims(img, 0)
@@ -80,4 +81,4 @@ def main(debug=False):
         print(f"Probability: {prob:.4f}\n")
 
 if __name__ == "__main__":
-    main(debug=False)
+    main(debug=True)
